@@ -27,3 +27,6 @@ git`
 
 `python simulation/main.py`
 
+# References
+
+PyBullet Documentation: https://pybullet.org/wordpress/index.php/forum-2/
