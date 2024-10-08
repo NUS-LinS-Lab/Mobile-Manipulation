@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<robot name="cube.urdf">
+  <link name="baseLink">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+	<mesh filename="cube.obj" scale=".07 .1 .05"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+	<mesh filename="cube.obj" scale=".07 .1 .05"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>
+

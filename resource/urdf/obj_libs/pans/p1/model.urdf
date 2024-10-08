@@ -1,0 +1,19 @@
+<?xml version="0.0" ?>
+<robot name="spatula.urdf">
+  <link name="spatula">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      <geometry>
+        <mesh filename="model.obj"/>
+      </geometry>
+      <material name="blue">
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      <geometry>
+  	<mesh filename="model_v.obj"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>
