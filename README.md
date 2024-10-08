@@ -1,6 +1,16 @@
 # Default-Course-Project
 Default Course Project of CS4278/CS5478 Intelligent Robots: Algorithms and Systems
 
+![Scene](imgs/scene.png)
+
+
+In this project, you should accomplish:
+
+1. Navigate the robot to the bedside table to see the cup. The goal image is at `imgs/goal.png`.
+2. Pick up the cup.
+3. Open the drawer and place the cup in it, then close the drawer.
+
+
 
 # Installation
 
@@ -16,3 +26,4 @@ git`
 # Run
 
 `python simulation/main.py`
+
