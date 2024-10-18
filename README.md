@@ -20,8 +20,7 @@ In this project, you should accomplish:
 
 3. `pip3 install pybullet numpy`
 
-4. `git clone git@github.com:NUS-LinS-Lab/Mobile-Manipulation.
-git`
+4. `git clone https://github.com/NUS-LinS-Lab/Mobile-Manipulation.git`
 
 # Run
 
