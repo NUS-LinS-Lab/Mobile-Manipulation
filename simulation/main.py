@@ -31,7 +31,7 @@ p.changeVisualShape(0,-1,textureUniqueId=plane_texture_id)
 
 ################ Robot
 mobot_urdf_file = os.path.join(root_dir,"resource/urdf/stretch/stretch.urdf")
-mobot = Robot(pybullet_api=p, start_pos=[-0.8,0.0,0.05], urdf_file=mobot_urdf_file)
+mobot = Robot(pybullet_api=p, start_pos=[-0.8,0.0,0.03], urdf_file=mobot_urdf_file)
 
 for _ in range(30):
     p.stepSimulation()
@@ -381,11 +381,8 @@ while (1):
         if (k == p.B3G_DOWN_ARROW and (v&p.KEY_WAS_RELEASED)):
                 forward=0
 
-    rightWheelVelocity+= (forward+turn)*speed
-    leftWheelVelocity += (forward-turn)*speed
-    
-    p.setJointMotorControl2(mobot.robotId,0,p.VELOCITY_CONTROL,targetVelocity=leftWheelVelocity,force=1000)
-    p.setJointMotorControl2(mobot.robotId,1,p.VELOCITY_CONTROL,targetVelocity=rightWheelVelocity,force=1000)
+    p.setJointMotorControl2(mobot.robotId,1,p.VELOCITY_CONTROL,targetVelocity=turn,force=1000)
+    p.setJointMotorControl2(mobot.robotId,2,p.VELOCITY_CONTROL,targetVelocity=forward,force=1000)
 
     mobot.get_observation()
 
