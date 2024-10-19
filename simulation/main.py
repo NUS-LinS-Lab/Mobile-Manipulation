@@ -64,10 +64,10 @@ wall_center_x = p.getAABB(table_id)[1][0] + wall_depth/2.0
 wall_v2 = p.createVisualShape(p.GEOM_BOX, halfExtents=[wall_depth/2.0, wall_width/2.0-0.5, wall_height/2.0])
 wall_c2 = p.createCollisionShape(p.GEOM_BOX, halfExtents=[wall_depth/2.0, wall_width/2.0-0.5, wall_height/2.0])
 
-wall_id = p.createMultiBody(mass,\
-                                          baseCollisionShapeIndex=wall_c2,\
-                                          baseVisualShapeIndex=wall_v2,\
-                                          basePosition=(wall_center_x, -1.4, wall_height/2.0))
+# wall_id = p.createMultiBody(mass,\
+#                                           baseCollisionShapeIndex=wall_c2,\
+#                                           baseVisualShapeIndex=wall_v2,\
+#                                           basePosition=(wall_center_x, -1.4, wall_height/2.0))
 
 wall_id_back = p.createMultiBody(mass,\
                                           baseCollisionShapeIndex=wall_c,\
@@ -94,11 +94,11 @@ wall_right_center_x = wall_left_center_x
 wall_left_center_y = p.getAABB(table_id)[0][1] - wall_depth/2.0
 wall_right_center_y = p.getAABB(table_id)[1][1] + wall_depth/2.0
 
-wall_left_id = p.createMultiBody(mass,\
-                                          baseCollisionShapeIndex=wall_c_left,\
-                                          baseVisualShapeIndex=wall_v_left,\
-                                          basePosition=(wall_left_center_x-1.0, wall_left_center_y-0.92, wall_height/2.0),
-                                          baseOrientation=p.getQuaternionFromEuler((0,0,np.pi/2.0)))
+# wall_left_id = p.createMultiBody(mass,\
+#                                           baseCollisionShapeIndex=wall_c_left,\
+#                                           baseVisualShapeIndex=wall_v_left,\
+#                                           basePosition=(wall_left_center_x-1.0, wall_left_center_y-0.92, wall_height/2.0),
+#                                           baseOrientation=p.getQuaternionFromEuler((0,0,np.pi/2.0)))
 wall_right_id = p.createMultiBody(mass,\
                                           baseCollisionShapeIndex=wall_c_right,\
                                           baseVisualShapeIndex=wall_v_right,\
@@ -112,9 +112,9 @@ wall_right_id2 = p.createMultiBody(mass,\
                                           baseOrientation=p.getQuaternionFromEuler((0,0,-np.pi/2.0)))
 
 wall_color = [204/255.0,242/255.0,255/255.0,1.0]
-p.changeVisualShape(wall_left_id,-1,rgbaColor=wall_color)
+# p.changeVisualShape(wall_left_id,-1,rgbaColor=wall_color)
 p.changeVisualShape(wall_right_id,-1,rgbaColor=wall_color)
-p.changeVisualShape(wall_id,-1,rgbaColor=wall_color)
+# p.changeVisualShape(wall_id,-1,rgbaColor=wall_color)
 
 urdf_dir = os.path.join(root_dir,"resource/urdf")
 
@@ -123,16 +123,16 @@ table_z = p.getAABB(table_id)[1][2]
 cabinet2_position = [-1.5, 0.25, table_z+ 1.5]
 cabinet2_scaling = 0.7
 cabinet2_orientation = p.getQuaternionFromEuler([0, 0, np.pi])
-cabinet2_id = p.loadURDF(fileName=os.path.join(urdf_dir,"obj_libs/cabinets/c2/mobility.urdf"),\
-                                   useFixedBase=True,
-                                   basePosition=cabinet2_position,\
-                                   baseOrientation=cabinet2_orientation,\
-                                   globalScaling=cabinet2_scaling)
+# cabinet2_id = p.loadURDF(fileName=os.path.join(urdf_dir,"obj_libs/cabinets/c2/mobility.urdf"),\
+#                                    useFixedBase=True,
+#                                    basePosition=cabinet2_position,\
+#                                    baseOrientation=cabinet2_orientation,\
+#                                    globalScaling=cabinet2_scaling)
 
-p.changeVisualShape(cabinet2_id,2,rgbaColor=[0.5,0.5,0.5,1])
-p.changeVisualShape(cabinet2_id,1,rgbaColor=[1,1,1,1])
-p.changeVisualShape(cabinet2_id,3,rgbaColor=[1,1,1,1])
-p.changeVisualShape(cabinet2_id,4,rgbaColor=[0.5,0.5,0.5,1])
+# p.changeVisualShape(cabinet2_id,2,rgbaColor=[0.5,0.5,0.5,1])
+# p.changeVisualShape(cabinet2_id,1,rgbaColor=[1,1,1,1])
+# p.changeVisualShape(cabinet2_id,3,rgbaColor=[1,1,1,1])
+# p.changeVisualShape(cabinet2_id,4,rgbaColor=[0.5,0.5,0.5,1])
 
 
 cabinet_center_x = 1.35 #+ (p.getAABB(table_id)[1][0] - p.getAABB(cabinet1_id)[1][0])/2.0
@@ -142,7 +142,7 @@ cabinet_center_z = 1.4
 #cabinet1_position = (cabinet_center_x, -cabinet_center_y, cabinet_center_z)
 cabinet2_position = (cabinet_center_x,  cabinet_center_y, cabinet_center_z)
 #p.resetBasePositionAndOrientation(cabinet1_id, cabinet1_position, cabinet1_orientation)
-p.resetBasePositionAndOrientation(cabinet2_id, cabinet2_position, cabinet2_orientation)
+# p.resetBasePositionAndOrientation(cabinet2_id, cabinet2_position, cabinet2_orientation)
 
 ############################
 #### fridge initialization

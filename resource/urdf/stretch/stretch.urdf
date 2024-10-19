@@ -1015,4 +1015,35 @@
     <limit effort="100" lower="0" upper="0.05" velocity="1.0"/>
   </joint>
 
+
+  <link name="plate">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1.0" />
+      <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.2" rpy="0 0 0" />
+      <geometry>
+        <box size="0.4 0.4 0.02" /> <!-- A 40cm x 40cm plate -->
+      </geometry>
+      <material name="gray">
+        <color rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.2" rpy="0 0 0" />
+      <geometry>
+        <box size="0.4 0.4 0.02" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <joint name="plate_joint" type="fixed">
+    <origin xyz="0 0 0.2" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="plate" />
+  </joint>
+
 </robot>
