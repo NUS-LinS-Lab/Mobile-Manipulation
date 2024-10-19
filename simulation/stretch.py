@@ -34,7 +34,7 @@ class Robot:
        self.project_dir = project_root_dir
        self.resource_dir = resource_dir
        self.urdf_file = urdf_file
-       self.robotId = self.p.loadURDF(self.urdf_file, self.start_pos, useFixedBase=True)
+       self.robotId = self.p.loadURDF(self.urdf_file, self.start_pos)
        self.p.resetBasePositionAndOrientation(self.robotId, self.start_pos, [0, 0, 0, 1])
        self.p.resetJointState(self.robotId, self.camera_index, -0.3)
        self.p.resetJointState(self.robotId, 4, 0.5)
