@@ -21,6 +21,16 @@ def initAxis(center, quater):
     p.addUserDebugLine(lineFromXYZ=center, lineToXYZ=center + rotmat[:3, 2] * 0.1, lineColorRGB=[0, 0, 1],
                             lineWidth=10)
 
+def get_global_action_from_local(robot, delta_forward):
+    # Get the current joint angle of joint 2 (rotation around z-axis)
+    joint2_state = p.getJointState(robot, 3)
+    current_yaw = joint2_state[0]  # Get the current rotation (yaw angle)
+    
+    # Calculate the delta in world coordinates using the yaw angle (rotation around z-axis)
+    delta_x = delta_forward * np.cos(current_yaw)  # Change along world x-axis
+    delta_y = delta_forward * np.sin(current_yaw)  # Change along world y-axis
+    
+    return delta_x, delta_y
 
 root_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)),"../")
 
@@ -381,8 +391,10 @@ while (1):
         if (k == p.B3G_DOWN_ARROW and (v&p.KEY_WAS_RELEASED)):
                 forward=0
 
-    p.setJointMotorControl2(mobot.robotId,1,p.VELOCITY_CONTROL,targetVelocity=turn,force=1000)
-    p.setJointMotorControl2(mobot.robotId,2,p.VELOCITY_CONTROL,targetVelocity=forward,force=1000)
+    x_forward, y_forward = get_global_action_from_local(mobot.robotId, forward)
+    p.setJointMotorControl2(mobot.robotId,3,p.VELOCITY_CONTROL,targetVelocity=turn,force=1000)
+    p.setJointMotorControl2(mobot.robotId,1,p.VELOCITY_CONTROL,targetVelocity=x_forward,force=1000)
+    p.setJointMotorControl2(mobot.robotId,2,p.VELOCITY_CONTROL,targetVelocity=y_forward,force=1000)
 
     mobot.get_observation()
 
