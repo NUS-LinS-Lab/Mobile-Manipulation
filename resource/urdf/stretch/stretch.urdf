@@ -38,11 +38,13 @@
     <dynamics damping="0.1" friction="0.1" />
   </joint>
 
+  <!-- original base offset:       xyz="-0.087526 -0.001626 0.081009" -->
+ 
  <link
     name="base_link">
     <inertial>
       <origin
-        xyz="-0.087526 -0.001626 0.081009"
+        xyz="0 0 0.081009"
         rpy="0 0 0" />
       <mass
         value="173.84389" />
@@ -1013,7 +1015,7 @@
       link="left_link_finger" />
     <axis
       xyz="1 0 0" />
-    <limit effort="100" lower="-0.05" upper="0.0" velocity="1.0"/>
+    <limit effort="100" lower="-0.03" upper="0.02" velocity="1.0"/>
   </joint>
 
  <link name="right_link_finger">
@@ -1022,7 +1024,7 @@
           <geometry>
             <box size="0.01 0.03 0.03" />
           </geometry>
-          <material name="blakc">
+          <material name="black">
             <color rgba="0 .0 .0 1.0"/>
           </material>
     </visual>
@@ -1050,7 +1052,7 @@
       link="right_link_finger" />
     <axis
       xyz="1 0 0" />
-    <limit effort="100" lower="0" upper="0.05" velocity="1.0"/>
+    <limit effort="100" lower="-0.02" upper="0.03" velocity="1.0"/>
   </joint>
 
 </robot>
