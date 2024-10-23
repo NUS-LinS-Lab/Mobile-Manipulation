@@ -16,6 +16,12 @@ We provide an example control code for the robot in `simulation/main.py`.
 
 You should implement the navigation and motion planning algorithms by yourself to accomplish the task.
 
+# Update
+
+2024/10/22: fix the gravity coefficient; add useful tools in `utils/tools.py`.
+
+2024/10/21: add keyboard control example code in `simulation/main.py`.
+
 
 # Installation
 
