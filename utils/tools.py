@@ -34,3 +34,27 @@ def get_link_index_by_name(robot, link_name):
             return i
     return None  # Return None if the link name is not found
 
+def getLinkInfo(object_id):
+    numJoint = p.getNumJoints(object_id)
+    LinkList = ['base']
+    for jointIndex in range(numJoint):
+      jointInfo = p.getJointInfo(object_id, jointIndex)
+      link_name = jointInfo[12]
+      if link_name not in LinkList:
+        LinkList.append(link_name)
+    return LinkList
+
+def getNumLinks(object_id):
+    return len(getLinkInfo(object_id))
+
+def getAABB(object_id):
+    numLinks = p.getNumLinks(object_id)
+    AABB_List = []
+    for link_id in range(-1, numLinks - 1):
+        AABB_List.append(p.getAABB(object_id, link_id))
+    AABB_array = np.array(AABB_List)
+    AABB_obj_min = np.min(AABB_array[:, 0, :], axis=0)
+    AABB_obj_max = np.max(AABB_array[:, 1, :], axis=0)
+    AABB_obj = np.array([AABB_obj_min, AABB_obj_max])
+    
+    return AABB_obj
