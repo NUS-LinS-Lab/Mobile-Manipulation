@@ -18,6 +18,8 @@ You should implement the navigation and motion planning algorithms by yourself t
 
 # Update
 
+2024/10/24: fix the gravity coefficient; add useful tools in `utils/tools.py`.
+
 2024/10/22: fix the gravity coefficient; add useful tools in `utils/tools.py`.
 
 2024/10/21: add keyboard control example code in `simulation/main.py`.
