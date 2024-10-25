@@ -18,7 +18,7 @@ You should implement the navigation and motion planning algorithms by yourself t
 
 # Update
 
-2024/10/24: add attach and detach functions for grasping in `simulation/main.py`. Now you can use this to grasp and release the mug. Try it!
+2024/10/25: add attach and detach functions for grasping in `simulation/main.py`. Now you can use this to grasp and release the mug. Try it!
 
 2024/10/24: add useful tools in `utils/tools.py`.
 
