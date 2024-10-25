@@ -58,3 +58,30 @@ def getAABB(object_id):
     AABB_obj = np.array([AABB_obj_min, AABB_obj_max])
     
     return AABB_obj
+
+def attach(object_id, robot_id, ee_link_index, threshould=0.2):
+    obj_position = p.getBasePositionAndOrientation(object_id)[0]
+    ee_position = p.getLinkState(robot_id, ee_link_index)[0]
+
+    if np.linalg.norm(np.array(obj_position) - np.array(ee_position)) > threshould:
+        print("Object is too far from the gripper")
+        return None
+    else:
+        attached_constraint = p.createConstraint(
+            parentBodyUniqueId=robot_id,
+            parentLinkIndex=ee_link_index,
+            childBodyUniqueId=object_id,
+            childLinkIndex=-1,
+            jointType=p.JOINT_FIXED,
+            jointAxis=[0, 0, 0],
+            parentFramePosition=[0, 0, 0],
+            childFramePosition=[0, 0, 0],
+        )
+        print(f"Attached object id {object_id} with end-effector!")
+
+        return attached_constraint
+    
+def detach(attached_constraint):
+    if attached_constraint:
+        p.removeConstraint(attached_constraint)
+        print("Detached object from the end-effector!")

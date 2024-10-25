@@ -24,6 +24,7 @@ yaw=0
 
 mobot.get_observation()
 
+constraint = None
 while (1):
     time.sleep(1./240.)
     keys = p.getKeyboardEvents()
@@ -100,7 +101,12 @@ while (1):
 
     base_control(mobot, p, forward, turn)
     arm_control(mobot, p, up, stretch, roll, yaw)
-    gripper_control(mobot, p, gripper_open)
+
+    if gripper_open == 1:
+        constraint = attach(21, mobot.robotId, 18)
+    elif gripper_open == -1:
+        detach(constraint)
+        constraint = None
     
     mobot.get_observation()
 
