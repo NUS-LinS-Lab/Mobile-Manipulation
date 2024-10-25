@@ -48,7 +48,7 @@ def getNumLinks(object_id):
     return len(getLinkInfo(object_id))
 
 def getAABB(object_id):
-    numLinks = p.getNumLinks(object_id)
+    numLinks = getNumLinks(object_id)
     AABB_List = []
     for link_id in range(-1, numLinks - 1):
         AABB_List.append(p.getAABB(object_id, link_id))
