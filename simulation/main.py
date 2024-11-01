@@ -147,7 +147,3 @@ while (1):
 
     ee_position, _, _ = get_robot_ee_pose(p, mobot.robotId)
     print("End-effector position: ", ee_position)
-
-    # [0.27, -0.71, 0.92]
-    # [-1.70, -3.70, 0.46]
-    # [1.45, -1.68, 0.59]
