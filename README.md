@@ -24,7 +24,7 @@ When the total score of the project is 100 points:
 
 You should navigate the robot to go from the starting point to any place after the narrow passage at the right room. When you arrive the goal region, the `main.py` function will print a successful signal. You can rewrite the success judgment function as long as the target region is kept the same.
 
-You will get corresponding points based on your total navigation driving distance:
+You will get corresponding points based on your total navigation driving distance (in meter):
 
 45% for total distance ≤ 18;
 40% for 18 < total distance ≤ 22;
@@ -33,7 +33,7 @@ You will get corresponding points based on your total navigation driving distanc
 10% for 28 < total distance ≤ 32;
 0% for total distance > 32.
 
-you should provide at least three successful navigation videos to show the robustness of your algorithm. We will use the slowest video for grading.
+you should provide at least three successful navigation videos to show the robustness of your algorithm.
 
 ### Manipulation (45%)
 
@@ -45,7 +45,13 @@ path planning (10%);
 collision avoidance (10%);
 inverse kinematics calculation (10%).
 
-You should provide a video to show that your robot arm can reach different given positions in the task space.
+You should provide a video to show that your robot arm (robot link 18) can reach these tree given positions in the task space. You can check the success with the `motion_planning_test()` function in `utils\tools.py`:
+
+[0.27, -0.71, 0.92]
+[-1.70, -3.70, 0.46]
+[1.45, -1.68, 0.59]
+
+please provide the success videos of the arm reaching these positions successfully.
 
 #### Successfully pick and place the mug (15%)
 

@@ -16,6 +16,21 @@ def get_robot_base_pose(p, robot_id, verbose=False):
 
     return link_position, link_orientation, euler_orientation
 
+def get_robot_ee_pose(p, robot_id, verbose=False):
+    # left gripper index
+    link_index = 18
+    link_state = p.getLinkState(robot_id, link_index)
+    link_position = link_state[0]
+    link_orientation = link_state[1]
+    euler_orientation = p.getEulerFromQuaternion(link_orientation)
+
+    if verbose:
+        print("Link Position: ", link_position)
+        print("Link Orientation (quaternion): ", link_orientation)
+        print("Link Orientation (Euler angles): ", euler_orientation)
+
+    return link_position, link_orientation, euler_orientation
+
 def get_joint_index_by_name(robot, joint_name):
     num_joints = p.getNumJoints(robot)
     
@@ -92,3 +107,9 @@ def detach(attached_constraint):
     if attached_constraint:
         p.removeConstraint(attached_constraint)
         print("Detached object from the end-effector!")
+
+def motion_planning_test(p, robot_id, target_position):
+    current_ee_position, _, _ = get_robot_ee_pose(p, robot_id)
+    if np.linalg.norm(np.array(target_position) - np.array(current_ee_position)) < 0.1:
+        print("The end-effector is already at the target position!")
+        
