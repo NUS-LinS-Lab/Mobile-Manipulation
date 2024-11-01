@@ -10,7 +10,7 @@ import numpy as np
 
 sys.path.append('./')
 
-def init_scene(p):
+def init_scene(p, mug_random=False):
     root_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)),"../")
 
     ################ Plane Environment
@@ -309,8 +309,13 @@ def init_scene(p):
     p.changeDynamics(spatula_id, -1, mass=0.01)
 
 
-    mug_position = [drawer_position[0]-0.15, drawer_position[1], 2.3]
+    mug_position = [drawer_position[0]-0.15, drawer_position[1], 1.5]
     mug_orientation = p.getQuaternionFromEuler([np.pi/2.0, 0, np.pi + np.pi/2.0])
+    if mug_random:
+        mug_position[0] += np.random.uniform(-0.05,0.1)
+        mug_position[1] += np.random.uniform(-0.1,0.1)
+        mug_orientation = p.getQuaternionFromEuler([np.pi/2.0, 0, np.pi + np.pi/2.0 + np.random.uniform(-np.pi/4.0,np.pi/4.0)])
+
     mug_scaling = 0.25
     mug_id = p.loadURDF(fileName=os.path.join(urdf_dir,"obj_libs/mugs/m1/model.urdf"),
                                     useFixedBase=False,
@@ -321,6 +326,7 @@ def init_scene(p):
     obj_friction_ceof = 4000.0
     p.changeDynamics(mug_id, -1, lateralFriction=obj_friction_ceof)
     p.changeDynamics(mug_id, -1, mass=0.01)
+    # mug id: 21
     
     for _ in range(20):
         p.stepSimulation()
@@ -422,3 +428,6 @@ class Robot:
                                       viewMatrix = camera_view_matrix,
                                       projectionMatrix=camera_proj_matrix,
                                       renderer = p.ER_BULLET_HARDWARE_OPENGL)
+    
+    def get_position(self):
+        return self.p.getBasePositionAndOrientation(self.robotId)[0]

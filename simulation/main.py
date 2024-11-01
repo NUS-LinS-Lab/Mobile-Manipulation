@@ -11,7 +11,7 @@ p.connect(p.GUI)
 p.configureDebugVisualizer(p.COV_ENABLE_GUI, 1)
 p.setGravity(0, 0, -9.81)
 
-mobot = init_scene(p)
+mobot = init_scene(p, mug_random=False)
     
 forward=0
 turn=0
@@ -24,7 +24,15 @@ yaw=0
 
 mobot.get_observation()
 
+total_driving_distance = 0
+previous_position, _, _ = get_robot_base_pose(p, mobot.robotId)
+current_position = previous_position
+
 constraint = None
+
+navi_flag = False
+grasp_flag = False
+
 while (1):
     time.sleep(1./240.)
     keys = p.getKeyboardEvents()
@@ -109,4 +117,30 @@ while (1):
         constraint = None
     
     mobot.get_observation()
+    
+    current_position, _, _ = get_robot_base_pose(p, mobot.robotId)
+    total_driving_distance += np.linalg.norm(np.array(current_position) - np.array(previous_position))
+    previous_position = current_position
 
+    if navi_flag == False:
+        if current_position[0] > 1.6 and current_position[1] > -0.35:
+            print("Reached the goal region! Total driving distance: ", total_driving_distance)
+            navi_flag = True
+        else:
+            print("Total driving distance: ", total_driving_distance)
+            print("Current position: ", current_position)
+    else:
+        print("Reached the goal region! Total driving distance: ", total_driving_distance)
+    
+    
+    if grasp_flag == False:
+        mug_position = get_mug_pose(p)
+        print("Mug position: ", mug_position)
+
+        if mug_position[0] > 3.3 and mug_position[0] < 3.5 \
+            and mug_position[1] > -0.17 and mug_position[1] < 0.25 \
+            and mug_position[2] > 0.71 and mug_position[2] < 0.75:
+            print("Mug is in the drawer!")
+            grasp_flag = True
+    else:
+        print("Mug is in the drawer!")

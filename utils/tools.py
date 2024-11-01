@@ -1,17 +1,20 @@
 import numpy as np
 import pybullet as p
 
-def get_robot_base_pose(p, robot_id):
+def get_robot_base_pose(p, robot_id, verbose=False):
     # base_link_index
     link_index = 4
     link_state = p.getLinkState(robot_id, link_index)
     link_position = link_state[0]
     link_orientation = link_state[1]
-    print("Link Position: ", link_position)
-    print("Link Orientation (quaternion): ", link_orientation)
-
     euler_orientation = p.getEulerFromQuaternion(link_orientation)
-    print("Link Orientation (Euler angles): ", euler_orientation)
+
+    if verbose:
+        print("Link Position: ", link_position)
+        print("Link Orientation (quaternion): ", link_orientation)
+        print("Link Orientation (Euler angles): ", euler_orientation)
+
+    return link_position, link_orientation, euler_orientation
 
 def get_joint_index_by_name(robot, joint_name):
     num_joints = p.getNumJoints(robot)
@@ -46,6 +49,10 @@ def getLinkInfo(object_id):
 
 def getNumLinks(object_id):
     return len(getLinkInfo(object_id))
+
+def get_mug_pose(p, mug_id=21):
+    position = p.getBasePositionAndOrientation(mug_id)[0]
+    return position
 
 def getAABB(object_id):
     numLinks = getNumLinks(object_id)
