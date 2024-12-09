@@ -16,7 +16,7 @@ We provide an example control code for the robot in `simulation/main.py`.
 
 You should implement the navigation and motion planning algorithms by yourself to accomplish the task.
 
-# Rubic
+# Rubric
 
 When the total score of the project is 100 points:
 
